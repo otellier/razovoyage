@@ -14,17 +14,32 @@
 Route::get('/', function () {
     return view('welcome');
 });
-Route::get('/about', function() {
-    echo "page about";
+Route::get('/voyages', function() {
+    return view('voyages');
 });
 Route::prefix('/admin')->group(function() {
-    Route::get('/voyages', function() {
-        echo "Page voyages de la console d'administration";
+     
+    Route::get('/voyages', function () {
+        $newVoyage = array(
+            "titre" => $_POST['titre'],
+            "description" => $_POST['description'],
+            "destination" => $_POST['destination'],
+            "prix" => $_POST['prix'],
+            "image" => $_POST['image']
+        );
+        VoyageController.show($newVoyage);
     });
     Route::get('/users', function() {
         echo "Page users de la console d'administration";
     });
+    Route::get('voyages/{id}/delete', 'VoyageController@destroy');
 });
 Route::get('/voyages/{id}', function($id) {
     return "page voyage".$id;
 });
+
+Route::get('/about', 'StaticPageController@about');
+
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');

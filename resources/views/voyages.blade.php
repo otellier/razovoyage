@@ -1,4 +1,4 @@
-@extends('layouts.tartifly')
+@extends('layouts.razo')
 
 @section('content')
 <div id="colorlib-about">
@@ -15,7 +15,7 @@
                 <li><a href="#">Staff</a></li>
                 <li><a href="#">Connect with us</a></li>
                 <li><a href="#">Faqs</a></li>
-                <li><a href="#">Career {{ $id }}</a></li>
+                <li><a href="#">Career @isset($id){{ $id }}@endisset</a></li>
               </ul>
             </div>
           </div>
@@ -24,6 +24,27 @@
           <h2>History</h2>
           <div class="row">
             <div class="col-md-12">
+            
+            @if (session('update_message'))
+              {{ session('update_message') }}
+            @endif
+
+
+            @if (session('delete_message'))
+            {{ session('delete_message')}}
+            @endif
+
+              <table class="table">
+               <tr>
+                 @isset($voyages)
+                 @foreach($voyages as $voyage)
+                 <td>{{$voyage}}</td>
+                 @endforeach
+                 @endisset
+                </tr>
+              </table>
+
+
               <p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts. Separated they live in Bookmarksgrove right at the coast of the Semantics, a large language ocean.</p>
 
               <p>A small river named Duden flows by their place and supplies it with the necessary regelialia. It is a paradisematic country, in which roasted parts of sentences fly into your mouth.</p>
