@@ -88,7 +88,6 @@ class VoyageController extends Controller
      */
     public function update(Request $request, $id)
     {
-
         $validator = Validator::make($request->all(), [
             'libelle' => 'required|min:10',
             'pays' => 'required|min:10',
@@ -103,7 +102,6 @@ class VoyageController extends Controller
         if ($validator->fails()){
             return back()->withErrors($validator)->withInput();
         }
-
         $voyage = Voyage::find($id);
         $voyage->titre = $request->titre;
         $voyage->destination = $request->destination;
@@ -125,6 +123,5 @@ class VoyageController extends Controller
         $voyage = Voyage::find($id);
         $voyage->delete();
         return redirect()->route('voyages.index')->withUpdateMessage("Le voyage : $voyage->titre a bien été supprimé");
-
     }
 }

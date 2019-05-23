@@ -34,9 +34,7 @@ Route::prefix('/admin')->group(function() {
     });
     Route::get('voyages/{id}/delete', 'VoyageController@destroy');
 });
-Route::get('/voyages/{id}', function($id) {
-    return "page voyage".$id;
-});
+Route::get('/voyages/{id}', 'VoyageController@show');
 
 Route::get('/about', 'StaticPageController@about');
 
